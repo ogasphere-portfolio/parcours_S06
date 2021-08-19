@@ -57,10 +57,9 @@ abstract class CoreController {
              'app-user-deleteUser',
              'teacher-createTeacher',
              'teacher-updateTeacher',
-             'teacher-deleteTeacher',
              'student-createStudent',
              'student-updateStudent',
-             'student-deleteStudent',
+             
         ];
         // Il faut verifier qu'on est sur une route ou on doit tester CSRF
         // inarray verifie su une VALEUR existe contrairement à array_key_exists qui verifie l'existence d'une clé
