@@ -23,8 +23,7 @@ class MainController extends CoreController {
             'admin',
             'catalog-manager'
         ]); */
-        $homeCategories = Category::findSome();
-        $homeProducts = Product::findSome();
+       
         // On appelle la méthode show() de l'objet courant
         // En argument, on fournit le fichier de Vue
         // Par convention, chaque fichier de vue sera dans un sous-dossier du nom du Controller

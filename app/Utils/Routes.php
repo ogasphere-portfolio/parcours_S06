@@ -1,46 +1,11 @@
 <?php
-// On doit déclarer toutes les "routes" à AltoRouter, afin qu'il puisse nous donner LA "route" correspondante à l'URL courante
-// On appelle cela "mapper" les routes
-// 1. méthode HTTP : GET ou POST (pour résumer)
-// 2. La route : la portion d'URL après le basePath
-// 3. Target/Cible : informations contenant
-//      - le nom de la méthode à utiliser pour répondre à cette route
-//      - le nom du controller contenant la méthode
-// 4. Le nom de la route : pour identifier la route, on va suivre une convention
-//      - "NomDuController-NomDeLaMéthode"
-//      - ainsi pour la route /, méthode "home" du MainController => "main-home"
+
 global $router;
 
 // Routes pour la page home
 $router->map('GET','/',['method' => 'home','controller' => '\App\Controllers\MainController'],'main-home');
 
-// Routes pour les catégories
-$router->map('GET','/categories',['method' => 'categories','controller' => '\App\Controllers\CategoryController'],'category-categories');
-$router->map('GET','/category/edit/[i:id]',['method' => 'displayUpdateCategory','controller' => '\App\Controllers\CategoryController'],'category-displayUpdateCategory');
-$router->map('GET','/category/new',['method' => 'displayNewCategory','controller' => '\App\Controllers\CategoryController'],'category-displayNewCategory');
-$router->map('POST','/category/update/[i:id]',['method' => 'updateCategory','controller' => '\App\Controllers\CategoryController'],'category-updateCategory');
-$router->map('POST','/category/new',['method' => 'createCategory','controller' => '\App\Controllers\CategoryController'],'category-createCategory');
-$router->map('GET','/category/delete/[i:id]',['method' => 'deleteCategory','controller' => '\App\Controllers\CategoryController'],'category-deleteCategory');
 
-// Routes pour les produits
-$router->map('GET','/products',['method' => 'products','controller' => '\App\Controllers\ProductController'],'product-products');
-$router->map('GET','/product/new',['method' => 'displayNewProduct','controller' => '\App\Controllers\ProductController'],'product-displayNewProduct');
-$router->map('GET','/product/edit/[i:id]',['method' => 'displayUpdateProduct','controller' => '\App\Controllers\ProductController'],'product-displayUpdateProduct');
-$router->map('POST','/product/update/[i:id]',['method' => 'updateProduct','controller' => '\App\Controllers\ProductController'],'product-updateProduct');
-$router->map('POST','/product/new',['method' => 'createProduct','controller' => '\App\Controllers\ProductController'],'product-createProduct');
-$router->map('GET','/product/delete/[i:id]',['method' => 'deleteProduct','controller' => '\App\Controllers\ProductController'],'product-deleteProduct');
-
-// Routes pour les Types
-$router->map('GET','/type',['method' => 'findType','controller' => '\App\Controllers\TypeController'],'type-types');
-$router->map('GET','/type/[i:id]',['method' => 'findTypeById','controller' => '\App\Controllers\TypeController'],'type-type-by-id');
-
-// Routes pour les marques
-$router->map('GET','/brand',['method' => 'findBrand','controller' => '\App\Controllers\BrandController'],'brand-brands');
-$router->map('GET','/brand/[i:id]',['method' => 'findBrandById','controller' => '\App\Controllers\BrandController'],'brand-brand-by-id');
-
-// Routes pour la tags
-$router->map('GET','/tag',['method' => 'findTag','controller' => '\App\Controllers\TagController'],'tag-tags');
-$router->map('GET','/tag/[i:id]',['method' => 'findTagById','controller' => '\App\Controllers\TagController'],'tag-tag-by-id');
 
 // Partie connexion à l'administration du site
 $router->map('GET','/connexion/login',['method' => 'connexion','controller' => '\App\Controllers\AuthController'],'auth-connexion');
@@ -53,21 +18,25 @@ $router->map('GET','/user/edit/[i:id]',['method' => 'displayUpdateUser','control
 $router->map('GET','/user/new',['method' => 'displayNewUser','controller' => '\App\Controllers\AppUserController'],'user-displayNewUser');
 $router->map('POST','/user/update/[i:id]',['method' => 'updateUser','controller' => '\App\Controllers\AppUserController'],'user-updateUser');
 $router->map('POST','/user/new',['method' => 'createUser','controller' => '\App\Controllers\AppUserController'],'user-createUser');
+$router->map('GET','/user/delete/[i:id]',['method' => 'deleteUser','controller' => '\App\Controllers\AppUserController'],'user-deleteUser');
 
 
 
-// Routes pour l'administration de la page home
+// Routes pour les Teachers
+$router->map('GET','/teachers',['method' => 'teachers','controller' => '\App\Controllers\TeacherController'],'teacher-teachers');
+$router->map('GET','/teachers/add',['method' => 'displayNewTeacher','controller' => '\App\Controllers\TeacherController'],'teacher-displayNewTeacher');
+$router->map('POST','/teachers/add',['method' => 'createTeacher','controller' => '\App\Controllers\TeacherController'],'teacher-createTeacher');
+$router->map('GET','/teachers/[i:id]',['method' => 'displayUpdateTeacher','controller' => '\App\Controllers\TeacherController'],'teacher-displayUpdateTeacher');
+$router->map('POST','/teachers/[i:id]',['method' => 'updateTeacher','controller' => '\App\Controllers\TeacherController'],'teacher-updateTeacher');
+$router->map('GET','/teachers/delete/[i:id]',['method' => 'deleteTeacher','controller' => '\App\Controllers\TeacherController'],'teacher-deleteTeacher');
 
-$router->map('GET','/categories/order',['method' => 'categoriesOrderForm','controller' => '\App\Controllers\CategoryController'],'category-categoriesOrderForm');
-$router->map('POST','/categories/order',['method' => 'categoriesOrderAction','controller' => '\App\Controllers\CategoryController'],'category-categoriesOrderAction');
-// Exemple de route avec mise en forme plus lisible
-/* $router->map(
-    'POST',
-    '/user/update/[i:id]',
-    [
-        'method' => 'updateUser',
-        'controller' => '\App\Controllers\AppUserController'
-    ],
-    'user-updateUser'
-);
- */
+
+// Routes pour les Students
+$router->map('GET','/students',['method' => 'students','controller' => '\App\Controllers\StudentsController'],'student-students');
+$router->map('GET','/students/add',['method' => 'displayNewStudent','controller' => '\App\Controllers\StudentsController'],'students-displayNewStudent');
+$router->map('POST','/students/add',['method' => 'createStudent','controller' => '\App\Controllers\StudentsController'],'students-createStudent');
+$router->map('GET','/students/[i:id]',['method' => 'displayUpdateStudent','controller' => '\App\Controllers\StudentsController'],'students-displayUpdateStudent');
+$router->map('POST','/students/[i:id]',['method' => 'updateStudent','controller' => '\App\Controllers\StudentsController'],'students-updateStudent');
+$router->map('GET','/students/delete/[i:id]',['method' => 'deleteStudent','controller' => '\App\Controllers\StudentsController'],'students-deleteStudent');
+
+
