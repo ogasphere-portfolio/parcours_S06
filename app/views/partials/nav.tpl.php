@@ -17,23 +17,21 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= $router->generate('student-students') ?>">Etudiants</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= $router->generate('user-users') ?>">Utilisateurs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">Se déconnecter</a>
-                    </li>
-                    
                     <?php if(isset($_SESSION['connectedUser']) && $_SESSION['connectedUser'] !== '' && $_SESSION['connectedUser']->getRole() === 'admin'): ?>
                         <li class="nav-item">
                             <a class="nav-link" href="<?=$router->generate('user-users') ?>">Utilisateurs</a>
                         </li>
                     <?php endif; ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?=$router->generate('auth-disconnect') ?>">Se déconnecter</a>
+                    </li>
+                    
+                    
                 </ul>
                   <!-- Si on est connecté -->
                   <?php if(isset($_SESSION['connectedUser']) && $_SESSION['connectedUser'] !== ''): ?>
                     <!-- On affiche le firstname de l'utilisateur -->
-                    <span class="nav-link"><?= $_SESSION['connectedUser']->getFirstname() ?></span>
+                    <span class="nav-link"><?= $_SESSION['connectedUser']->getName() ?></span>
                     <a class="nav-link" href="<?=$router->generate('auth-disconnect') ?>">Deconnexion</a>
                 <?php else: ?>
                     <!-- Lien vers formulaire de connexion -->
