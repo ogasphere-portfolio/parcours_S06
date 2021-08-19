@@ -26,6 +26,7 @@ abstract class CoreController {
              //'auth-loginForm' => [],
              //'auth-loginAction' => [],
              //'auth-logout' => [],
+             'main-home' => ['admin', 'user'],
              'app-user-users' => ['admin', 'user'],
              'app-user-newUser' => ['admin'],
              'app-user-createUser' => ['admin'],
@@ -35,7 +36,6 @@ abstract class CoreController {
              'teacher-displayUpdateTeacher' => ['admin'],
              'teacher-updateTeacher' => ['admin'],
              'teacher-deleteTeacher' => ['admin'],
-             
              'student-students' => ['admin', 'user'],
              'student-displayNewStudent' => ['admin', 'user'],
              'student-createStudent' => ['admin', 'user'],
@@ -115,7 +115,7 @@ abstract class CoreController {
         } else {
             // Sinon, l'internaute n'est pas connecté à un compte
             $_SESSION['errorMessage'] = "Vous n'avez pas le droit d'acceder à cette page sans etre connecté";
-            header('Location:' . $router->generate('user-connexion'));
+            header('Location:' . $router->generate('auth-connexion'));
             exit();
             // Alors on le redirige vers la page de connexion
         }
