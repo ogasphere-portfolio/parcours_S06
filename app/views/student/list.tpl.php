@@ -1,5 +1,5 @@
 
-    <div class="container my-4"> <a href="add.html" class="btn btn-success float-right">Ajouter</a>
+    <div class="container my-4"> <a href="<?= $router->generate('student-displayNewStudent') ?>" class="btn btn-success float-right">Ajouter</a>
 
         <h2>Liste des &Eacute;tudiants</h2>
         <table class="table table-hover mt-4">

@@ -6,6 +6,7 @@ namespace App\Controllers;
 use App\core\CoreModel;
 
 use App\Models\Student;
+use App\Models\Teacher;
 use App\core\CoreController;
 
 
@@ -32,7 +33,8 @@ class StudentController extends CoreController {
     {
         $randToken = bin2hex(random_bytes(32));
         $_SESSION['token'] = $randToken;
-        $this->show('student/add', [
+        $this->show('student/edit', [
+            'teachers' => Teacher::findAll(),
             'token' => $randToken
         ]);
        
@@ -52,6 +54,8 @@ class StudentController extends CoreController {
         if ($student) {
             $this->show('student/edit', [
                 'student' => $student,
+                'teachers' => Teacher::findAll(),
+                'token' => $randToken
             ]);
         } else {
             dd('Id non trouvée dans la BDD');

@@ -14,18 +14,15 @@
             <label for="password">Mot de passe</label>
             <input type="password" class="form-control" id="password" placeholder="Mot de passe de l'utilisateur" name="password" value="<?= isset($user) ? $user->getPassword() : '' ?>">
         </div>
-        <div class="form-group">
-            <label for="firstname">Prénom</label>
-            <input type="text" class="form-control" id="firstname" placeholder="Prénom de l'utilisateur" name="firstname" value="<?= isset($user) ? $user->getFirstname() : '' ?>">
-        </div>
+        
         <div class="form-group">
             <label for="lastname">Nom</label>
-            <input value="adelbert" type="name" class="form-control" id="lastname" placeholder="Nom de l'utilisateur" name="lastname" value="<?= isset($user) ?  $user->getLastname() : ''?>">
+            <input value="adelbert" type="name" class="form-control" id="lastname" placeholder="Nom de l'utilisateur" name="lastname" value="<?= isset($user) ?  $user->getName() : ''?>">
         </div>
         <div class="form-group">
             <label for="role">Choisir un rôle : </label>
             <select class="form-control" id="role" name="role">
-                <option value="catalog-manager">Catalog-Manager</option>
+                <option value="catalog-manager">User</option>
                 <option value="admin">Admin</option>
             </select>
         </div>
