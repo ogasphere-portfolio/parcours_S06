@@ -32,7 +32,7 @@ class AppUserController extends CoreController {
     {
         $randToken = bin2hex(random_bytes(32));
         $_SESSION['token'] = $randToken;
-        $this->show('appuser/add', [
+        $this->show('appuser/edit', [
             'token' => $randToken
         ]);
        
@@ -43,9 +43,7 @@ class AppUserController extends CoreController {
 
         $randToken = bin2hex(random_bytes(32));
         $_SESSION['token'] = $randToken;
-        $this->show('appuser/edit', [
-            'token' => $randToken
-        ]);
+       
         // On recupere le contenu d'un produit via son id
 
         // On l'envoie vers la vue
@@ -54,6 +52,7 @@ class AppUserController extends CoreController {
         if ($user) {
             $this->show('appuser/edit', [
                 'user' => $user,
+                'token' => $randToken
             ]);
         } else {
             dd('Id non trouvée dans la BDD');
@@ -150,7 +149,7 @@ class AppUserController extends CoreController {
         // je définis les nouvelles données via nos setter correspondants
         $findUserById->setEmail($newEmail);
         $findUserById->setPassword($newPassword);
-        $findUserById->setFirstname($newName);
+        $findUserById->setName($newName);
         $findUserById->setRole($newRole);
         $findUserById->setStatus($newStatus);
 
@@ -163,7 +162,7 @@ class AppUserController extends CoreController {
         header('Location: ' . $router->generate('user-users'));
 
     }
-    public function deleteAppUser($id)
+    public function deleteUser($id)
     {
         
         global $router;

@@ -73,7 +73,7 @@ class AppUser extends CoreModel
     {
         $pdo = Database::getPDO();
         $sql = "
-                INSERT INTO `app_user` (`email`, `password`,`firstname`, `lastname`, `role`, `status`)
+                INSERT INTO `app_user` (`email`, `password`,`name`, `role`, `status`)
                 VALUES (
                     :email, 
                     :password,
@@ -111,7 +111,7 @@ class AppUser extends CoreModel
 
         // Ecriture de la requête UPDATE
         $sql = "
-            UPDATE `user`
+            UPDATE `app_user`
             SET
             email = :email,
             password = :password,
@@ -124,12 +124,12 @@ class AppUser extends CoreModel
         $request = $pdo->prepare($sql);
         // Execution de la requête de mise à jour (exec, pas query)
         $updatedRows = $request->execute([
-            ':email' => $this->email,        
-            ':password' => \password_hash($this->password, \PASSWORD_DEFAULT ),
-            ':name' => $this->name,
-            ':role' => $this->role,
-            ':status' => $this->status,
-            ':id'=> $this->id,
+            ':email' => $this->getEmail(),
+            ':password' => $this->getPassword(),
+            ':name' => $this->getName(),
+            ':role' => $this->getRole(),
+            ':status' => $this->getStatus(),
+            ':id'=> $this->getId(),
         ]);
 
     
