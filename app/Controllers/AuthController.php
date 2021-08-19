@@ -36,12 +36,12 @@ class AuthController extends CoreController
                 header('Location:' . $router->generate('main-home'));
             } else {
                 $_SESSION['errorMessage'] = "ERREUR DE CONNEXION MDP";
-                header('Location:' . $router->generate('user-connexion'));
+                header('Location:' . $router->generate('auth-connexion'));
             }
 
         } else {
             $_SESSION['errorMessage'] = "ERREUR DE CONNEXION";
-            header('Location:' . $router->generate('user-connexion'));
+            header('Location:' . $router->generate('auth-connexion'));
         }
     }
     public function disconnect()
@@ -50,6 +50,6 @@ class AuthController extends CoreController
         // suppression du connectedUser
         unset($_SESSION['connectedUser']);
         // Redirection vers la page de connexion
-        header('Location: ' . $router->generate('user-connexion'));
+        header('Location: ' . $router->generate('auth-connexion'));
     }
 }
