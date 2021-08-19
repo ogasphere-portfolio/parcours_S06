@@ -23,7 +23,7 @@ class AppUserController extends CoreController {
         // sous la forme d'un tableau d'objets
         $users = AppUser::findAll();
 
-        $this->show('user/users', [
+        $this->show('appuser/list', [
             'users' => $users,
         ]);
     }
@@ -32,7 +32,7 @@ class AppUserController extends CoreController {
     {
         $randToken = bin2hex(random_bytes(32));
         $_SESSION['token'] = $randToken;
-        $this->show('user/userForm', [
+        $this->show('appuser/add', [
             'token' => $randToken
         ]);
        
@@ -43,7 +43,7 @@ class AppUserController extends CoreController {
 
         $randToken = bin2hex(random_bytes(32));
         $_SESSION['token'] = $randToken;
-        $this->show('user/userForm', [
+        $this->show('appuser/edit', [
             'token' => $randToken
         ]);
         // On recupere le contenu d'un produit via son id
@@ -52,7 +52,7 @@ class AppUserController extends CoreController {
         $user = AppUser::find($id);
 
         if ($user) {
-            $this->show('user/userForm', [
+            $this->show('appuser/edit', [
                 'user' => $user,
             ]);
         } else {
@@ -69,15 +69,13 @@ class AppUserController extends CoreController {
         // Valider le contenu du formulaire
         $email = filter_input(INPUT_POST, 'email', \FILTER_SANITIZE_EMAIL);
         $password = filter_input(INPUT_POST, 'password', \FILTER_SANITIZE_STRING);
-        $firstname = filter_input(INPUT_POST, 'firstname', \FILTER_SANITIZE_STRING);
-        $lastname = filter_input(INPUT_POST, 'lastname', \FILTER_SANITIZE_STRING);
+        $name = filter_input(INPUT_POST, 'name', \FILTER_SANITIZE_STRING);
         $role = filter_input(INPUT_POST, 'role', \FILTER_SANITIZE_STRING);
         $status = filter_input(INPUT_POST, 'status', \FILTER_SANITIZE_NUMBER_INT);
 
         $email = CoreModel::valid_donnees($_POST["email"]);
         $password = CoreModel::valid_donnees($_POST["password"]);
-        $firstname = CoreModel::valid_donnees($_POST["firstname"]);
-        $lastname = CoreModel::valid_donnees($_POST["lastname"]);
+        $name = CoreModel::valid_donnees($_POST["name"]);
         $role = CoreModel::valid_donnees($_POST["role"]);
         $status = CoreModel::valid_donnees($_POST["status"]);
         
@@ -108,8 +106,7 @@ class AppUserController extends CoreController {
         $newUser = new AppUser();
         $newUser->setEmail($email);
         $newUser->setPassword(password_hash($password, PASSWORD_DEFAULT));
-        $newUser->setFirstname($firstname);
-        $newUser->setLastname($lastname);
+        $newUser->setName($name);
         $newUser->setRole($role);
         $newUser->setStatus($status);
 
@@ -133,15 +130,13 @@ class AppUserController extends CoreController {
         //je récupère les données entrées dans le formulaire
         $newEmail = filter_input(INPUT_POST, 'email', \FILTER_SANITIZE_EMAIL);
         $newPassword = filter_input(INPUT_POST, 'password', \FILTER_SANITIZE_STRING);
-        $newFirstname = filter_input(INPUT_POST, 'firstname', \FILTER_SANITIZE_STRING);
-        $newLastname = filter_input(INPUT_POST, 'lastname', \FILTER_SANITIZE_STRING);
+        $newName = filter_input(INPUT_POST, 'name', \FILTER_SANITIZE_STRING);
         $newRole = filter_input(INPUT_POST, 'role', \FILTER_SANITIZE_STRING);
         $newStatus = filter_input(INPUT_POST, 'status', \FILTER_SANITIZE_NUMBER_INT);
 
         $newEmail = CoreModel::valid_donnees($_POST["email"]);
         $newPassword = CoreModel::valid_donnees($_POST["password"]);
-        $newFirstname = CoreModel::valid_donnees($_POST["firstname"]);
-        $newLastname = CoreModel::valid_donnees($_POST["lastname"]);
+        $newName = CoreModel::valid_donnees($_POST["name"]);
         $newRole = CoreModel::valid_donnees($_POST["role"]);
         $newStatus = CoreModel::valid_donnees($_POST["status"]);
         
@@ -152,8 +147,7 @@ class AppUserController extends CoreController {
         // je définis les nouvelles données via nos setter correspondants
         $findUserById->setEmail($newEmail);
         $findUserById->setPassword($newPassword);
-        $findUserById->setFirstname($newFirstname);
-        $findUserById->setLastname($newLastname);
+        $findUserById->setFirstname($newName);
         $findUserById->setRole($newRole);
         $findUserById->setStatus($newStatus);
 

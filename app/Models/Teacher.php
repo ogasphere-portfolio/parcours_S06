@@ -1,18 +1,12 @@
 <?php
 
-namespace App\Models;
-
-use \PDO;
-use App\core\CoreModel;
-use App\Utils\Database;
-
-
 
 class AppUser extends CoreModel
 {
     private $email;
     private $password;
-    private $name;
+    private $firstname;
+    private $lastname;
     private $role;
     private $status;
 
@@ -77,7 +71,8 @@ class AppUser extends CoreModel
                 VALUES (
                     :email, 
                     :password,
-                    :name,
+                    :firstname,
+                    :lastname,
                     :role,
                     :status
                         )";
@@ -87,7 +82,8 @@ class AppUser extends CoreModel
         $insertedRows = $request->execute([
             ':email' => $this->getEmail(),
             ':password' => $this->getPassword(),
-            ':name' => $this->getName(),
+            ':firstname' => $this->getFirstname(),
+            ':lastname' => $this->getLastname(),
             ':role' => $this->getRole(),
             ':status' => $this->getStatus()
         ]);
@@ -115,7 +111,8 @@ class AppUser extends CoreModel
             SET
             email = :email,
             password = :password,
-            name = :name,
+            firstname = :firstname,
+            lastname = :lastname,
             role  = :role,
             status = :status
             WHERE id=:id
@@ -126,7 +123,8 @@ class AppUser extends CoreModel
         $updatedRows = $request->execute([
             ':email' => $this->email,        
             ':password' => \password_hash($this->password, \PASSWORD_DEFAULT ),
-            ':name' => $this->name,
+            ':firstname' => $this->firstname,
+            ':lastname' => $this->lastname,
             ':role' => $this->role,
             ':status' => $this->status,
             ':id'=> $this->id,
@@ -151,108 +149,3 @@ class AppUser extends CoreModel
         return $pdoStatement;
     }
 
-    /**
-     * Get the value of email
-     *
-     * @return  string
-     */ 
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set the value of email
-     *
-     * @param  string  $email
-     *
-     * @return  self
-     */ 
-    public function setEmail(string $email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of password
-     */ 
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * Set the value of password
-     *
-     * @return  self
-     */ 
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of firstname
-     */ 
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set the value of firstname
-     *
-     * @return  self
-     */ 
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    
-    /**
-     * Get the value of role
-     */ 
-    public function getRole()
-    {
-        return $this->role;
-    }
-
-    /**
-     * Set the value of role
-     *
-     * @return  self
-     */ 
-    public function setRole($role)
-    {
-        $this->role = $role;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of status
-     */ 
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * Set the value of status
-     *
-     * @return  self
-     */ 
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-}
