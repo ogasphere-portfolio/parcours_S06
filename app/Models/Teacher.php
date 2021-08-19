@@ -1,10 +1,12 @@
 <?php
+namespace App\Models;
 
+use PDO;
 use App\core\CoreModel;
 use App\Utils\Database;
 
 
-class AppUser extends CoreModel
+class Teacher extends CoreModel
 {
     
     private $firstname;
@@ -199,5 +201,5 @@ class AppUser extends CoreModel
 
         return $this;
     }
-    }
+}
 

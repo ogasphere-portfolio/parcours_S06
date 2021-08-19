@@ -84,6 +84,9 @@ class AppUserController extends CoreController {
         if($email === '') {
             $_SESSION['errorMessage'] = "Email non fourni";
             $error = true;
+        } elseif ($name === '') {
+            $_SESSION['errorMessage'] = "Nom non fourni";
+            $error = true;
         } elseif($password === '') {
             $_SESSION['errorMessage'] = "Password non fourni";
             $error = true;
