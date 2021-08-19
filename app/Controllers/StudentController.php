@@ -43,9 +43,7 @@ class TeacherController extends CoreController {
 
         $randToken = bin2hex(random_bytes(32));
         $_SESSION['token'] = $randToken;
-        $this->show('student/edit', [
-            'token' => $randToken
-        ]);
+       
         // On recupere le contenu d'un produit via son id
 
         // On l'envoie vers la vue

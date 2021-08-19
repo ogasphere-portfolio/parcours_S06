@@ -32,7 +32,7 @@ class TeacherController extends CoreController {
     {
         $randToken = bin2hex(random_bytes(32));
         $_SESSION['token'] = $randToken;
-        $this->show('teacher/add', [
+        $this->show('teacher/edit', [
             'token' => $randToken
         ]);
        
@@ -43,9 +43,7 @@ class TeacherController extends CoreController {
 
         $randToken = bin2hex(random_bytes(32));
         $_SESSION['token'] = $randToken;
-        $this->show('teacher/edit', [
-            'token' => $randToken
-        ]);
+       
         // On recupere le contenu d'un produit via son id
 
         // On l'envoie vers la vue
@@ -54,6 +52,7 @@ class TeacherController extends CoreController {
         if ($teacher) {
             $this->show('teacher/edit', [
                 'teacher' => $teacher,
+                'token' => $randToken
             ]);
         } else {
             dd('Id non trouvée dans la BDD');
@@ -111,7 +110,7 @@ class TeacherController extends CoreController {
         
         $newTeacher->save();
 
-        header('location: ' . $router->generate('user-users'));
+        header('location: ' . $router->generate('teacher-teachers'));
         exit();
         // Rediriger vers une page pertinente
 

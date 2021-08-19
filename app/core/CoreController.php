@@ -17,7 +17,7 @@ abstract class CoreController {
     {
          // ACL
          global $match;
-
+        
          // Recuperation du nom de la route
          $routeName = $match['name'];
  
