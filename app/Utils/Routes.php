@@ -32,11 +32,11 @@ $router->map('GET','/teachers/delete/[i:id]',['method' => 'deleteTeacher','contr
 
 
 // Routes pour les Students
-$router->map('GET','/students',['method' => 'students','controller' => '\App\Controllers\StudentsController'],'student-students');
-$router->map('GET','/students/add',['method' => 'displayNewStudent','controller' => '\App\Controllers\StudentsController'],'students-displayNewStudent');
-$router->map('POST','/students/add',['method' => 'createStudent','controller' => '\App\Controllers\StudentsController'],'students-createStudent');
-$router->map('GET','/students/[i:id]',['method' => 'displayUpdateStudent','controller' => '\App\Controllers\StudentsController'],'students-displayUpdateStudent');
-$router->map('POST','/students/[i:id]',['method' => 'updateStudent','controller' => '\App\Controllers\StudentsController'],'students-updateStudent');
-$router->map('GET','/students/delete/[i:id]',['method' => 'deleteStudent','controller' => '\App\Controllers\StudentsController'],'students-deleteStudent');
+$router->map('GET','/students',['method' => 'students','controller' => '\App\Controllers\StudentController'],'student-students');
+$router->map('GET','/students/add',['method' => 'displayNewStudent','controller' => '\App\Controllers\StudentController'],'student-displayNewStudent');
+$router->map('POST','/students/add',['method' => 'createStudent','controller' => '\App\Controllers\StudentController'],'student-createStudent');
+$router->map('GET','/students/[i:id]',['method' => 'displayUpdateStudent','controller' => '\App\Controllers\StudentController'],'student-displayUpdateStudent');
+$router->map('POST','/students/[i:id]',['method' => 'updateStudent','controller' => '\App\Controllers\StudentController'],'student-updateStudent');
+$router->map('GET','/students/delete/[i:id]',['method' => 'deleteStudent','controller' => '\App\Controllers\StudentController'],'student-deleteStudent');
 
 

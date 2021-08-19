@@ -11,7 +11,7 @@ use App\core\CoreController;
 
 // todo passer la partie connexion dans AuthController
 
-class TeacherController extends CoreController {
+class StudentController extends CoreController {
 
  
     
