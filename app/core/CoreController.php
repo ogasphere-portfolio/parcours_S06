@@ -26,23 +26,22 @@ abstract class CoreController {
              //'auth-loginForm' => [],
              //'auth-loginAction' => [],
              //'auth-logout' => [],
-             'app-user-users' => ['admin'],
+             'app-user-users' => ['admin', 'user'],
              'app-user-newUser' => ['admin'],
              'app-user-createUser' => ['admin'],
-             'main-home' => ['admin', 'catalog-manager'],
-             'category-categories' => ['admin', 'catalog-manager'],
-             'category-newCategory' => ['admin', 'catalog-manager'],
-             'category-createCategory' => ['admin', 'catalog-manager'],
-             'category-updateCategoryForm' => ['admin', 'catalog-manager'],
-             'category-updateCategoryAction' => ['admin', 'catalog-manager'],
-             'category-deleteCategoryAction' => ['admin', 'catalog-manager'],
-             'category-categoriesOrderForm' => ['admin', 'catalog-manager'],
-             'product-products' => ['admin', 'catalog-manager'],
-             'product-newProductForm' => ['admin', 'catalog-manager'],
-             'product-createProduct' => ['admin', 'catalog-manager'],
-             'product-updateProductForm' => ['admin', 'catalog-manager'],
-             'product-updateProductAction' => ['admin', 'catalog-manager'],
-             'product-deleteProductAction' => ['admin', 'catalog-manager']
+             'teacher-teachers' => ['admin', 'user'],
+             'teacher-displayNewTeacher' => ['admin'],
+             'teacher-createTeacher' => ['admin'],
+             'teacher-displayUpdateTeacher' => ['admin'],
+             'teacher-updateTeacher' => ['admin'],
+             'teacher-deleteTeacher' => ['admin'],
+             
+             'student-students' => ['admin', 'user'],
+             'student-displayNewStudent' => ['admin', 'user'],
+             'student-createStudent' => ['admin', 'user'],
+             'student-displayUpdateStudent' => ['admin', 'user'],
+             'student-updateStudent' => ['admin', 'user'],
+             'student-deleteStudent' =>['admin', 'user'],
          ];
  
          // On va devoir recuperer les roles liés a notre route courante
@@ -54,12 +53,15 @@ abstract class CoreController {
          //CSRF liste des routes devant recevoir un Token ( tous les formulaires)
          $csrfTokenToCheck = [
              'app-user-createUser',
-             'category-createCategory',
-             'category-updateCategoryAction',
-             'product-createProduct',
-             'product-updateProductAction',
-             'category-categoriesOrderAction'
-         ];
+             'app-user-updateUser',
+             'app-user-deleteUser',
+             'teacher-createTeacher',
+             'teacher-updateTeacher',
+             'teacher-deleteTeacher',
+             'student-createStudent',
+             'student-updateStudent',
+             'student-deleteStudent',
+        ];
         // Il faut verifier qu'on est sur une route ou on doit tester CSRF
         // inarray verifie su une VALEUR existe contrairement à array_key_exists qui verifie l'existence d'une clé
         if(in_array($routeName, $csrfTokenToCheck)) {
