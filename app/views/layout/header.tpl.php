@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>oShop BackOffice</title>
+    <title>Skoule BackOffice</title>
 
     <!-- Getting bootstrap (and reboot.css) -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -18,12 +18,7 @@
         integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
 
     <!-- We can still have our own CSS file -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
 <body>
-
-<?php
-// On inclut des sous-vues => "partials"
-include __DIR__.'/../partials/nav.tpl.php';
-?>

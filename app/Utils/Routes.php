@@ -43,9 +43,9 @@ $router->map('GET','/tag',['method' => 'findTag','controller' => '\App\Controlle
 $router->map('GET','/tag/[i:id]',['method' => 'findTagById','controller' => '\App\Controllers\TagController'],'tag-tag-by-id');
 
 // Partie connexion à l'administration du site
-$router->map('GET','/connexion/login',['method' => 'connexion','controller' => '\App\Controllers\AppUserController'],'user-connexion');
-$router->map('POST','/connexion/login',['method' => 'connexionControl','controller' => '\App\Controllers\AppUserController'],'user-connexion-control');
-$router->map('GET','/deconnexion',['method' => 'disconnect','controller' => '\App\Controllers\AppUserController'],'user-disconnect');
+$router->map('GET','/connexion/login',['method' => 'connexion','controller' => '\App\Controllers\AuthController'],'auth-connexion');
+$router->map('POST','/connexion/login',['method' => 'connexionControl','controller' => '\App\Controllers\AuthController'],'auth-connexion-control');
+$router->map('GET','/deconnexion',['method' => 'disconnect','controller' => '\App\Controllers\AuthController'],'auth-disconnect');
 
 // Routes pour les utilisateurs
 $router->map('GET','/users',['method' => 'users','controller' => '\App\Controllers\AppUserController'],'user-users');

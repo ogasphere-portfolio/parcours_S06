@@ -6,7 +6,7 @@
 
 
 <div class="container my-4">
-  <form action="<?= $router->generate('user-connexion-control')?>" method="POST" class="mt-5">
+  <form action="<?= $router->generate('auth-connexion-control')?>" method="POST" class="mt-5">
     <!-- CSRF token pour eviter les attaques CSRF -->
     <input type="hidden" name="csrf_token" value="<?= $token ?>">
     <div class="form-group">
