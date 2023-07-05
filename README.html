@@ -1,0 +1,206 @@
+<h1 id="parcours-s06-fire">Parcours S06 🔥</h1>
+<p>Une école 100% en ligne formant des développeurs Web souhaite mettre en place un BackOffice de gestion de leurs formateurs et de leurs étudiants.</p>
+<blockquote>
+  <p>ceci est une œuvre de fiction. Toute ressemblance avec des personnages ayant réellement existé serait purement fortuite</p>
+</blockquote>
+<h2 id="informations-information_source">Informations ℹ️</h2>
+<p><strong>💡 Conseil du jour, bonjour</strong>  <br />
+Prend bien le temps de lire TOUT l'énoncé avant de commencer à coder.  <br />
+De nombreux éléments sont fournis, pour gagner du temps. Ce serait dommage de passer à côté 😉</p>
+<h3 id="1-routes-_controllers_-motorway">#1 Routes, <em>Controllers</em> 🛣</h3>
+<ul>
+<li>la liste des routes du projet est fournie : <a href="docs/routes.md">docs/routes.md</a></li>
+<li>toutes les routes ne sont pas à mettre en place</li>
+<li>il est préférable d'ajouter chaque route au fur et à mesure du besoin</li>
+<li>les noms de <em>Controllers</em> sont libres</li>
+<li>les noms des méthodes de ces <em>Controllers</em> sont libres aussi</li>
+</ul>
+<h3 id="2-intégration-htmlcss-lipstick">#2 Intégration HTML/CSS 💄</h3>
+<ul>
+<li>l'intégration HTML du projet est fournie dans <a href="docs/integration-html-css/">docs/integration-html-css/</a></li>
+<li>toutes les pages de cette intégration ne sont pas à mettre en place</li>
+<li>à chaque nouvelle page/route, tu peux piocher le code HTML nécessaire</li>
+</ul>
+<h3 id="3-imports-sql-floppy_disk">#3 Imports SQL 💾</h3>
+<ul>
+<li>⚠️ il y a 2 fichiers d'imports SQL :</li>
+<li>import des tables et champs : <a href="docs/structure.sql">docs/structure.sql</a></li>
+<li>import des données : <a href="docs/data.sql">docs/data.sql</a></li>
+<li>il faut bien entendu effectuer les imports dans le bon ordre :</li>
+<li>importer d'abord la structure</li>
+<li>puis se placer dans la base de données <code>skoule</code> créée</li>
+<li>et enfin importer les données</li>
+</ul>
+<h3 id="4-architecture-mvc-heart_eyes">#4 Architecture MVC 😍</h3>
+<ul>
+<li>on ne va pas réinventer la roue complète lors de ce parcours</li>
+<li>on va plutôt se baser sur le code de cette saison (BackOffice), et le personnaliser</li>
+<li>on peut récupérer le code complet de <em>oShop</em> et supprimer le code superflu</li>
+<li>ou bien partir de zéro et copier-coller des bouts de code de <em>oShop</em> nécessaires</li>
+<li>par contre, il ne doit pas rester le moindre code spécifique au projet <em>oShop</em>, il faudra donc bien penser à supprimer les bouts de code inutiles</li>
+</ul>
+<h3 id="5-git">#5 Git</h3>
+<ul>
+<li>la correction de ce parcours se fera grâce à une <em>Pull Request</em></li>
+<li><a href="https://kourou.oclock.io/ressources/fiche-recap/pull-request/">fiche récap sur la création d'une <em>Pull Request</em></a> à faire à la fin du parcours</li>
+<li>sauf que pour faire une <em>Pull Request</em>, il faut déjà penser à coder dans une nouvelle branche 🤔</li>
+</ul>
+<h2 id="lets-code--keyboard">Let's code ! ⌨️</h2>
+<h3 id="1-créer-une-nouvelle-branche">#1 Créer une nouvelle branche</h3>
+<ul>
+<li>pour préparer la PR</li>
+<li>créer une nouvelle branche (nommée <code>skoule</code> ou <code>parcours</code> par exemple)</li>
+<li>comme je me suis levé du bon pied ce matin, je veux bien donner la commande</li>
+<li><code>git checkout -b nom-de-la-branche</code></li>
+<li>c'est 🎁, ne me remerciez pas 😅</li>
+</ul>
+<h3 id="2-lister-tous-les-profs">#2 Lister tous les profs</h3>
+<ul>
+<li>coder route, <em>Controller</em>, <em>View</em>, <em>Model</em></li>
+<li>pour t'aider, on te fournit les bouts de code ci-dessous</li>
+</ul>
+<p><details><summary>récupération de tous les profs</summary></p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// On commence par récupérer tous les Models Teachers</span>
+<span class="hljs-comment">// pour transmettre ensuite à la view</span>
+<span class="hljs-variable">$teachersList</span> = <span class="hljs-title class_">Teacher</span>::<span class="hljs-title function_ invoke__">findAll</span>();
+</code></pre>
+<p></details></p>
+<p><details><summary>Dans la vue, on affiche la liste de profs</summary></p>
+<pre><code class="hljs html language-html"><span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;table table-hover mt-4&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">&quot;col&quot;</span>&gt;</span>#<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">&quot;col&quot;</span>&gt;</span>Prénom<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">&quot;col&quot;</span>&gt;</span>Nom<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">&quot;col&quot;</span>&gt;</span>Titre<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">&quot;col&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span>
+        <span class="hljs-meta">&lt;?php foreach ($teachersList as $currentTeacher) : ?&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">scope</span>=<span class="hljs-string">&quot;row&quot;</span>&gt;</span>&lt;?= $currentTeacher-&gt;getId() ?&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>&lt;?= $currentTeacher-&gt;getFirstname() ?&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>&lt;?= $currentTeacher-&gt;getLastname() ?&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>&lt;?= $currentTeacher-&gt;getJob() ?&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-right&quot;</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;todo&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-sm btn-warning&quot;</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fa fa-pencil-square-o&quot;</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn-group&quot;</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-sm btn-danger dropdown-toggle&quot;</span>
+                        <span class="hljs-attr">data-toggle</span>=<span class="hljs-string">&quot;dropdown&quot;</span> <span class="hljs-attr">aria-haspopup</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">aria-expanded</span>=<span class="hljs-string">&quot;false&quot;</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fa fa-trash-o&quot;</span> <span class="hljs-attr">aria-hidden</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span>
+                    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;dropdown-menu&quot;</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;dropdown-item&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;todo&quot;</span>&gt;</span>Oui, je veux supprimer<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;dropdown-item&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-attr">data-toggle</span>=<span class="hljs-string">&quot;dropdown&quot;</span>&gt;</span>Oups !<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+                    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-meta">&lt;?php endforeach ?&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+</code></pre>
+<p></details></p>
+<h3 id="3-lister-tous-les-étudiants">#3 Lister tous les étudiants</h3>
+<ul>
+<li>coder route, <em>Controller</em>, <em>View</em>, <em>Model</em></li>
+<li>pour t'aider, tu peux t'inspirer de l'étape précédente</li>
+</ul>
+<h3 id="4-ajout-dun-prof">#4 Ajout d'un prof</h3>
+<ul>
+<li>coder route, <em>Controller</em>, <em>View</em>, <em>Model</em></li>
+<li>⚠️ il y a une route en <code>GET</code> et une autre en <code>POST</code></li>
+<li>générer le lien du bouton "Ajouter" de la liste des profs, vers cette page d'ajout</li>
+<li>une fois les données envoyées par le formulaire vers la même URL mais en <code>POST</code></li>
+<li>c'est la route en <code>POST</code> qui est sollicitée et exécute la méthode de <em>Controller</em> correspondante</li>
+<li>cette méthode contient tout le traitement nécessaire :</li>
+<li>récupérer les données</li>
+<li>ajouter en DB</li>
+<li>rediriger sur la page "liste"</li>
+<li>(la validation simple des données sera un bonus)</li>
+<li>pour t'aider, on te fournit les bouts de code ci-dessous</li>
+</ul>
+<p><details><summary>récupération des données en POST</summary></p>
+<p><strong>Première façon : avec filter_input()</strong></p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// On récupère les données</span>
+<span class="hljs-variable">$firstname</span> = <span class="hljs-title function_ invoke__">filter_input</span>(INPUT_POST, <span class="hljs-string">&#x27;firstname&#x27;</span>);
+<span class="hljs-variable">$lastname</span> = <span class="hljs-title function_ invoke__">filter_input</span>(INPUT_POST, <span class="hljs-string">&#x27;lastname&#x27;</span>);
+<span class="hljs-variable">$job</span> = <span class="hljs-title function_ invoke__">filter_input</span>(INPUT_POST, <span class="hljs-string">&#x27;job&#x27;</span>);
+<span class="hljs-variable">$status</span> = <span class="hljs-title function_ invoke__">filter_input</span>(INPUT_POST, <span class="hljs-string">&#x27;status&#x27;</span>, FILTER_VALIDATE_INT);
+</code></pre>
+<p><strong>Deuxième façon : avec $_POST et les conditions ternaires</strong></p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// On récupère les données</span>
+<span class="hljs-variable">$firstname</span> = <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;firstname&#x27;</span>]) ? <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;firstname&#x27;</span>] : <span class="hljs-string">&#x27;&#x27;</span>;
+<span class="hljs-variable">$lastname</span> = <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;lastname&#x27;</span>]) ? <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;lastname&#x27;</span>] : <span class="hljs-string">&#x27;&#x27;</span>;
+<span class="hljs-variable">$job</span> = <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;job&#x27;</span>]) ? <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;job&#x27;</span>] : <span class="hljs-string">&#x27;&#x27;</span>;
+<span class="hljs-variable">$status</span> = <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;status&#x27;</span>]) ? <span class="hljs-title function_ invoke__">intval</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;status&#x27;</span>]) : <span class="hljs-number">0</span>;
+</code></pre>
+<p></details></p>
+<p><details><summary>Ajout d'un prof en DB</summary></p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// On crée un nouveau Model</span>
+<span class="hljs-variable">$teacher</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Teacher</span>();
+
+<span class="hljs-comment">// On renseigne les propriétés</span>
+<span class="hljs-variable">$teacher</span>-&gt;<span class="hljs-title function_ invoke__">setFirstname</span>(<span class="hljs-variable">$firstname</span>);
+<span class="hljs-variable">$teacher</span>-&gt;<span class="hljs-title function_ invoke__">setLastname</span>(<span class="hljs-variable">$lastname</span>);
+<span class="hljs-variable">$teacher</span>-&gt;<span class="hljs-title function_ invoke__">setJob</span>(<span class="hljs-variable">$job</span>);
+<span class="hljs-variable">$teacher</span>-&gt;<span class="hljs-title function_ invoke__">setStatus</span>(<span class="hljs-variable">$status</span>);
+
+<span class="hljs-comment">// On sauvegarde en DB</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-variable">$teacher</span>-&gt;<span class="hljs-title function_ invoke__">save</span>()) {
+    <span class="hljs-comment">// TODO rediriger vers la page liste</span>
+}
+</code></pre>
+<p></details></p>
+<h3 id="5-ajout-dun-étudiant">#5 Ajout d'un étudiant</h3>
+<ul>
+<li>coder route, <em>Controller</em>, <em>View</em>, <em>Model</em></li>
+<li>pour t'aider, tu peux t'inspirer de l'étape précédente</li>
+<li>mais on te fournit aussi un bout de code 😉</li>
+</ul>
+<p><details><summary>Ajout d'un étudiant en DB</summary></p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// On crée un nouveau Model</span>
+<span class="hljs-variable">$student</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>();
+
+<span class="hljs-comment">// On renseigne les propriétés</span>
+<span class="hljs-variable">$student</span>-&gt;<span class="hljs-title function_ invoke__">setFirstname</span>(<span class="hljs-variable">$firstname</span>);
+<span class="hljs-variable">$student</span>-&gt;<span class="hljs-title function_ invoke__">setLastname</span>(<span class="hljs-variable">$lastname</span>);
+<span class="hljs-variable">$student</span>-&gt;<span class="hljs-title function_ invoke__">setTeacherId</span>(<span class="hljs-variable">$teacherId</span>);
+<span class="hljs-variable">$student</span>-&gt;<span class="hljs-title function_ invoke__">setStatus</span>(<span class="hljs-variable">$status</span>);
+
+<span class="hljs-comment">// On sauvegarde en DB</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-variable">$student</span>-&gt;<span class="hljs-title function_ invoke__">save</span>()) {
+    <span class="hljs-comment">// TODO rediriger vers la page liste</span>
+}
+</code></pre>
+<p></details></p>
+<h3 id="6-restreindre-laccès-aux-utilisateurs">#6 Restreindre l'accès aux utilisateurs</h3>
+<ul>
+<li>coder la page de connexion "sign in" (<code>GET</code> et <code>POST</code>)</li>
+<li>coder le <em>Model</em> <code>AppUser</code></li>
+<li>la table <code>app_user</code> contient actuellement 2 utilisateurs :</li>
+<li><em>Lucie copin</em>, mot de passe : <code>cameleons</code></li>
+<li><em>Adrien</em>, mot de passe : <code>nicole</code></li>
+<li>désormais, toutes les pages du projet nécessitent un utilisateur connecté, SAUF :</li>
+<li>la page de connexion, bien sûr 😉</li>
+</ul>
+<h3 id="7-mettre-en-place-les-permissions">#7 Mettre en place les permissions</h3>
+<ul>
+<li>le <em>Role</em> de chaque utilisateur connecté permet de déterminer à quelles ressources/pages il a accès</li>
+<li>on a 2 <em>Roles</em> dans ce projet : <code>admin</code> et <code>user</code></li>
+<li>les pages liées aux étudiants sont autorisées aux <em>Roles</em> <code>admin</code> et <code>user</code></li>
+<li>les pages liées aux profs ont des permissions plus précises :</li>
+<li>ajout, modification et suppression autorisés au <em>Role</em> <code>admin</code></li>
+<li>liste autorisée aux <em>Roles</em> <code>admin</code> et <code>user</code></li>
+</ul>
+<h3 id="8-pull-request">#8 Pull Request</h3>
+<ul>
+<li>faire un <code>push</code> de son travail</li>
+<li>aller sur son repo GitHub pour créer la <em>Pull Request</em></li>
+<li><a href="https://kourou.oclock.io/ressources/fiche-recap/pull-request/">fiche récap sur la création d'une <em>Pull Request</em></a></li>
+</ul>
+<h2 id="bonus">Bonus</h2>
+<p>Et oui, comme pour les challenges, il y a <a href="bonus.md">des bonus</a> 🎉</p>
